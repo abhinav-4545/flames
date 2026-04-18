@@ -21,38 +21,36 @@ export const MainPage = () => {
   S: "👨‍👩‍👧"
 };
 function find(fname, sname) {
-    // ✅ normalize input
-    fname = fname.toLowerCase().replace(/\s/g, "");
-    sname = sname.toLowerCase().replace(/\s/g, "");
+  fname = fname.toLowerCase().replace(/\s/g, "");
+  sname = sname.toLowerCase().replace(/\s/g, "");
 
-    if (!fname || !sname) return "";
+  if (!fname || !sname) return "";
 
-    let map = {};
-    let count = 0;
+  let a = fname.split("");
+  let b = sname.split("");
 
-    for (let c of fname) {
-        map[c] = (map[c] || 0) + 1;
+  // remove common letters
+  for (let i = 0; i < a.length; i++) {
+    let index = b.indexOf(a[i]);
+    if (index !== -1) {
+      a[i] = "";
+      b[index] = "";
     }
+  }
 
-    for (let c of sname) {
-        map[c] = (map[c] || 0) - 1;
-    }
+  let count = a.join("").length + b.join("").length;
 
-    for (let key in map) {
-        count += Math.abs(map[key]);
-    }
+  let flames = "FLAMES";
+  let index = 0;
 
-    let flames = "FLAMES";
-    let index = 0;
+  if (count === 0) return "S";
 
-    if (count === 0) return "S";
+  while (flames.length > 1) {
+    index = (index + count - 1) % flames.length;
+    flames = flames.slice(0, index) + flames.slice(index + 1);
+  }
 
-    while (flames.length > 1) {
-        index = (index + count - 1) % flames.length;
-        flames = flames.slice(0, index) + flames.slice(index + 1);
-    }
-
-    return flames;
+  return flames;
 }
 return (
 <div className="MainPage">
