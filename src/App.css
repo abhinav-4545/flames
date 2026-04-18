@@ -211,3 +211,45 @@ html, body {
   0% { transform: scale(0.6); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
+.MainPage {
+  background-size: cover;
+  background-position: center;
+}
+body {
+  overflow-x: hidden;
+}
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .flames-title {
+    font-size: 50px;
+    letter-spacing: 5px;
+  }
+
+  .flames-description {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .names-inputs input {
+    width: 90%;
+    font-size: 16px;
+    padding: 14px 18px;
+  }
+
+  .calculate-button button {
+    width: 80%;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .result {
+    font-size: 24px;
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .MainPage {
+    padding-top: 50px;
+  }
+}
