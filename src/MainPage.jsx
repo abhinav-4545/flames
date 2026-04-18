@@ -21,34 +21,35 @@ export const MainPage = () => {
   S: "👨‍👩‍👧"
 };
 function find(fname, sname) {
+    // ✅ normalize input
+    fname = fname.toLowerCase().replace(/\s/g, "");
+    sname = sname.toLowerCase().replace(/\s/g, "");
+
+    if (!fname || !sname) return "";
+
     let map = {};
     let count = 0;
 
-    // count freq from fname
     for (let c of fname) {
         map[c] = (map[c] || 0) + 1;
     }
 
-    // subtract using sname
     for (let c of sname) {
         map[c] = (map[c] || 0) - 1;
     }
 
-    // calculate total unmatched count
     for (let key in map) {
         count += Math.abs(map[key]);
     }
 
     let flames = "FLAMES";
     let index = 0;
+
     if (count === 0) return "S";
+
     while (flames.length > 1) {
         index = (index + count - 1) % flames.length;
-
-        // remove character at index
         flames = flames.slice(0, index) + flames.slice(index + 1);
-
-        if (index === flames.length) index = 0;
     }
 
     return flames;
